@@ -1,0 +1,103 @@
+<!Doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>CalcIMC</title>
+    
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset {
+    height: 100%;
+    background: rgb(243, 101, 35);
+	box-shadow: inset 0px 7px 5px -5px rgb(206, 203, 203);
+	 color: white;
+}
+
+legend {
+    padding-top: 20px;
+    padding-bottom: 20 px;
+    box-shadow: 10 10px 10px -10px rgb(19, 18, 18); 
+    text-align: center;
+}
+
+div {
+	text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+
+.button {
+    background-color: rgba(6, 196, 47, 0.979);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+    </style>
+
+     <script type="text/javascript">
+         function calcularIMC(){
+             var Peso, Altura, Imc, situacao;
+           
+             Peso=document.getElementById("Peso").value;
+             Altura=document.getElementById("Altura").value;
+            
+                if(Peso!="" && Altura!=""){
+          
+                 Altura = parseInt(Altura)/100;
+                Imc=Peso/(Altura*Altura);
+        
+                document.getElementById("Imc").value=Imc.toFixed(2);
+              }
+    
+              
+            if(Imc < 16)
+            {
+                situacao = 'Subpeso Severo';
+            }
+           
+                 else if(Imc > 16 && Imc < 19.99)
+                 {
+                    situacao = 'Subpeso';
+                 }
+                 else if(Imc >= 20 && Imc < 24.99)
+                 {
+                    situacao = 'Normal';
+                 }
+                 else if( Imc >= 25 && Imc < 29.99)
+                 {
+                    situacao = 'Sobrepeso';  
+                 }
+                 else if(Imc >= 30 && Imc < 39.99)
+                 {
+                    situacao = 'Obeso'; 
+                 }
+                 else if(Imc >= 40)
+                 {
+                    situacao = 'Obeso Mórbido';
+                 }          
+             document.getElementById("Situação").value= situacao;
+          
+              }
+        </script>
+</head>
+<body>
+    
+    <FORM NAME="IMC" ACTION="" METHOD="POST">
+		<fieldset>
+  			<legend>Calculo do I.M.C </legend>
+  			<div id="valores">
+  			<label>Peso (Kg).:</label><input type="text" id="Peso" name="Peso" size="10"><br>
+  			<label>Altura (cm).:</label><input type="text" id="Altura" name="Altura" size="10">
+  			<input type="button" class="button" name="submit" value="Calcular IMC" onclick="calcularIMC()"><br>
+  			<label>IMC:</label><input type="text" id="Imc" name="Imc" size="10" readonly>
+  			<label>Situação:</label><input type="text" id="Situação" name="Situação" size="30" readonly>
+ 			</div>
+ 		</fieldset>
+    </form>
+</body>
+</html>
